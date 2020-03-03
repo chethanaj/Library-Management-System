@@ -3,11 +3,13 @@ package lk.chethana.bookservice.service;
 import lk.chethana.bookservice.model.Book;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BookService {
 
-    Book add(Book book);
+    Book addBook(Book book);
+    void deleteBook(Integer id);
     List<Book> getAllBooks();
-    Book findById(Integer bookId);
+    Optional <Book> findById(Integer bookId);
 
 }

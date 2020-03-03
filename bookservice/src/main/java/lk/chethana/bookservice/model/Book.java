@@ -2,6 +2,7 @@ package lk.chethana.bookservice.model;
 
 import lombok.Data;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,8 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotBlank
     private String isbn;
     private String title;
     private String subject;
