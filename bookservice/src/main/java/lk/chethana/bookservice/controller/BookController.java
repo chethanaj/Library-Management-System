@@ -1,19 +1,29 @@
 package lk.chethana.bookservice.controller;
 
 import lk.chethana.bookservice.model.Book;
+import lk.chethana.bookservice.model.SearchCriteria;
+import lk.chethana.bookservice.repository.BookRepository;
+import lk.chethana.bookservice.repository.BookRepositoryImpl;
 import lk.chethana.bookservice.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/book")
+
 public class BookController {
 
     @Autowired
     BookServiceImpl bookService;
+
+    @Autowired
+    BookRepositoryImpl bookRepository;
 
     @RequestMapping(method = RequestMethod.POST)
     public Book addBook(@RequestBody Book book) {
@@ -55,9 +65,24 @@ public class BookController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<Book> getAllBooks() {
+//        return bookService.getAllBooks();
+//    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/allBooks")
+    @ResponseBody
+    public List<Book> findAll(@RequestParam(value = "search", required = false) String search) {
+        List<SearchCriteria> params = new ArrayList<>();
+        if (search != null) {
+            Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+            Matcher matcher = pattern.matcher(search + ",");
+            while (matcher.find()) {
+                params.add(new SearchCriteria(matcher.group(1),
+                        matcher.group(2), matcher.group(3)));
+            }
+        }
+        return bookRepository.searchUser(params);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

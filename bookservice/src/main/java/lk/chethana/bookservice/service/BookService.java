@@ -9,7 +9,7 @@ public interface BookService {
 
     Book addBook(Book book);
     void deleteBook(Integer id);
-    List<Book> getAllBooks();
+    //List<Book> getAllBooks();
     Optional <Book> findById(Integer bookId);
 
 }
