@@ -4,6 +4,7 @@ import lk.chethana.bookservice.model.Book;
 import lk.chethana.bookservice.model.SearchCriteria;
 import lk.chethana.bookservice.repository.BookRepository;
 import lk.chethana.bookservice.repository.BookRepositoryImpl;
+import lk.chethana.bookservice.service.BookService;
 import lk.chethana.bookservice.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 public class BookController {
 
     @Autowired
-    BookServiceImpl bookService;
+    BookService bookService;
 
     @Autowired
     BookRepositoryImpl bookRepository;
