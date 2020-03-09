@@ -1,6 +1,7 @@
 package lk.chethana.bookservice.service;
 
 import lk.chethana.bookservice.model.Book;
+import lk.chethana.bookservice.model.SearchCriteria;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,4 +13,5 @@ public interface BookService {
     //List<Book> getAllBooks();
     Optional <Book> findById(Integer bookId);
 
+    List<Book> searchUser(List<SearchCriteria> params);
 }

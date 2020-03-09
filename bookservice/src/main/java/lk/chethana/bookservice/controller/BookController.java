@@ -23,8 +23,6 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @Autowired
-    BookRepositoryImpl bookRepository;
 
     @RequestMapping(method = RequestMethod.POST)
     public Book addBook(@RequestBody Book book) {
@@ -70,7 +68,7 @@ public class BookController {
 //    public List<Book> getAllBooks() {
 //        return bookService.getAllBooks();
 //    }
-
+//http://192.168.8.100:43267/book/allBooks?search=subject:history
     @RequestMapping(method = RequestMethod.GET, value = "/allBooks")
     @ResponseBody
     public List<Book> findAll(@RequestParam(value = "search", required = false) String search) {
@@ -83,7 +81,7 @@ public class BookController {
                         matcher.group(2), matcher.group(3)));
             }
         }
-        return bookRepository.searchUser(params);
+        return bookService.searchUser(params);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

@@ -3,6 +3,8 @@ package lk.chethana.customerservice.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,4 +24,13 @@ public class Customer {
 
     @Transient
     private String passwordConfirm;
+
+    @Transient
+    private List<BookLending> bookLendings = new ArrayList<>();
+
+    @Transient
+    private List<BookReservation> bookReservations = new ArrayList<>();
+
+    @Transient
+    private List<Fine> fines = new ArrayList<>();
 }

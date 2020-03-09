@@ -20,6 +20,7 @@ public class Book {
     private String publisher;
     private String language;
     private Integer noOfPages;
+    private BookStatus status;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(joinColumns = @JoinColumn(name = "bookid",referencedColumnName = "id"),

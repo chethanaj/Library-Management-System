@@ -1,7 +1,9 @@
 package lk.chethana.bookservice.service;
 
 import lk.chethana.bookservice.model.Book;
+import lk.chethana.bookservice.model.SearchCriteria;
 import lk.chethana.bookservice.repository.BookRepository;
+import lk.chethana.bookservice.repository.BookRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,6 +14,9 @@ public class BookServiceImpl implements BookService{
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    BookRepositoryImpl bookRepositoryImpl;
 
     @Override
     public Book addBook(Book book) {
@@ -34,5 +39,10 @@ public class BookServiceImpl implements BookService{
 
         return bookRepository.findById(bookId);
 
+    }
+
+    @Override
+    public List<Book> searchUser(List<SearchCriteria> params) {
+        return bookRepositoryImpl.searchUser(params);
     }
 }
