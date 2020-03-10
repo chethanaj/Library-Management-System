@@ -31,7 +31,7 @@ public class ApiGatewayApplication {
 
     @PostConstruct
     @Transient
-    public void padda(){
+    public void userNew(){
         User user = new User();
         user.setLastName("Jay");
         user.setFirstName("Chethana");
