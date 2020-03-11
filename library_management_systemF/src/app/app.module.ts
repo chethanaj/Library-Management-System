@@ -28,7 +28,8 @@ import { AlertComponent } from './_components';
         RegisterComponent,
         AlertComponent
     ],
-    providers: [
+    providers:
+        [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
@@ -37,4 +38,4 @@ import { AlertComponent } from './_components';
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { };
+export class AppModule { }

@@ -13,5 +13,6 @@ public interface BookService {
     //List<Book> getAllBooks();
     Optional <Book> findById(Integer bookId);
 
-    List<Book> searchUser(List<SearchCriteria> params);
+    List<Book> search(List<SearchCriteria> params);
+    List<Book> getAllAvailableBooks();
 }

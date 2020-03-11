@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -49,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
             }
             List<GrantedAuthority> authorities = new ArrayList<>();
             user.getRoles().forEach(r -> authorities.add(new SimpleGrantedAuthority(r.getRole().toString())));
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),
+            Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),
                     password, authorities));
             //NOTE: normally we dont need to add "ROLE_" prefix. Spring does automatically for us.
             //Since we are using custom token using JWT we should add ROLE_ prefix
