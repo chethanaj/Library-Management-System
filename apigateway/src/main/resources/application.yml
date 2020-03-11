@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/ApiGateway_DB?createDatabaseIfNotExist=true
     username: root
-    password: virtusa@1234
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
