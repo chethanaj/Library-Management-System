@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 @Data
 public class BookLending {

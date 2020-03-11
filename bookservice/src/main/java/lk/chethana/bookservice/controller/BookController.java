@@ -81,11 +81,17 @@ public class BookController {
                         matcher.group(2), matcher.group(3)));
             }
         }
-        return bookService.searchUser(params);
+        return bookService.search(params);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteBookById(@PathVariable Integer id) {
         bookService.deleteBook(id);
+    }
+
+
+    @RequestMapping(value = "/avilableBooks")
+    public List <Book> getAvailableBooks(){
+        return bookService.getAllAvailableBooks();
     }
 }

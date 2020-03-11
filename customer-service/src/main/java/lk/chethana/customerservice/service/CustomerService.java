@@ -2,7 +2,10 @@ package lk.chethana.customerservice.service;
 
 import lk.chethana.customerservice.model.Customer;
 
+import java.util.Optional;
+
 public interface CustomerService {
-    Customer save(Customer customer);
+
+    Optional<Customer> getCustomerById(Integer id);
 
 }

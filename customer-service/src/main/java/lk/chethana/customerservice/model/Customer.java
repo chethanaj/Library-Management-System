@@ -15,15 +15,12 @@ public class Customer {
     private Integer id;
     private String firstName;
     private String lastName;
-    private String password;
     private String email;
     private Integer contactNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @Transient
-    private String passwordConfirm;
 
     @Transient
     private List<BookLending> bookLendings = new ArrayList<>();
