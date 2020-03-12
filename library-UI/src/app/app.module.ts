@@ -10,6 +10,7 @@ import {RegisterComponent} from './register/register.component';
 import { AuthService } from './auth.service';
 import { BookshelfComponent } from './bookshelf/bookshelf.component';
 import {AuthGuard} from "./auth.guard";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {AuthGuard} from "./auth.guard";
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
 
   ],
   providers: [AuthService,  AuthGuard],
