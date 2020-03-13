@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "library-UI"
+  "defaultProject": "library-UI",
+  "cli": {
+    "analytics": false
+  }
 }
