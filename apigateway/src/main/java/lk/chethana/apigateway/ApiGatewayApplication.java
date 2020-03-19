@@ -33,8 +33,6 @@ public class ApiGatewayApplication {
     @Transient
     public void userNew(){
         User user = new User();
-        user.setLastName("Jay");
-        user.setFirstName("Chethana");
         user.setUsername("che@gmail.com");
         user.setEnabled(true);
         Role r = new Role();

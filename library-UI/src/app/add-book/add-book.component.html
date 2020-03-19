@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <!--div [hidden]="submitted"-->
+      <h1>Add Book</h1>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" formControlName="title" required [ngClass]="{ 'is-invalid': submitted && f.title.errors }" >
+          <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+            <div *ngIf="f.title.errors.required">Title is required</div>
+        </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input type="text" class="form-control" formControlName="isbn" required [ngClass]="{ 'is-invalid': submitted && f.isbn.errors }" >
+          <div *ngIf="submitted && f.isbn.errors" class="invalid-feedback">
+            <div *ngIf="f.isbn.errors.required">ISBN is required</div>
+        </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" class="form-control" formControlName="subject" required [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" >
+            <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+              <div *ngIf="f.subject.errors.required">Subject is required</div>
+          </div>
+          </div>
+
+
+        <div class="form-group">
+            <label for="publisher">Publisher</label>
+            <input type="text" class="form-control" formControlName="publisher" required [ngClass]="{ 'is-invalid': submitted && f.publisher.errors }" >
+            <div *ngIf="submitted && f.publisher.errors" class="invalid-feedback">
+              <div *ngIf="f.publisher.errors.required">Publisher is required</div>
+          </div>
+          </div>
+
+
+        <div class="form-group">
+            <label for="language">Language</label>
+            <input type="text" class="form-control" formControlName="language" required [ngClass]="{ 'is-invalid': submitted && f.language.errors }" >
+            <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
+              <div *ngIf="f.language.errors.required">Language is required</div>
+          </div>
+          </div>
+  
+
+        <div class="form-group">
+            <label for="noOfPages">No Of Pages</label>
+            <input type="number" class="form-control" formControlName="noOfPages" required [ngClass]="{ 'is-invalid': submitted && f.noOfPages.errors }" >
+            <div *ngIf="submitted && f.noOfPages.errors" class="invalid-feedback">
+              <div *ngIf="f.noOfPages.errors.required">NoOfPages is required</div>
+          </div>
+          </div>
+
+    
+          <div class="form-group">
+          <mat-form-field class="multiple-items">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let author of authorsArray" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(author)">
+                {{author.authorName}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Add authors" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" required>
+            </mat-chip-list>
+            <i class="material-icons tooltip-info" matTooltip="Enter author name and press enter to add multiple authors">
+              info
+            </i>
+          </mat-form-field>
+          </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+
+  
+      
+
+       <!-- - -->
+      </form>
+    <!--/div-->
+
+  </div>

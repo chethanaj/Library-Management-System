@@ -31,10 +31,10 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(id);
     }
 
-//    @Override
-//    public List<Book> getAllBooks() {
-//        return bookRepository.findAll();
-//    }
+    @Override
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
 
     @Override
     public Optional<Book> findById(Integer bookId) {

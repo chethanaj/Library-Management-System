@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router'
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,24 +9,70 @@ import { Router } from '@angular/router'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+ 
+  registerUserForm = this.formBuilder.group({
+    username:[''],
+    password:[''],
+    firstName:[''],
+    lastName:[''],
+    contactNumber:[''],
+    address:this.formBuilder.group({
+      streetNumber:'',
+      city:'',
+      country:''
 
-  registerUserData = {username:"",password:""}
-  constructor(private _auth: AuthService,
+    }),
+    roles:[]
+     
+  });
+
+  rolesArray: Role[] = [];
+  checkIfOthersAreSelected: boolean;
+  
+
+  constructor(private formBuilder: FormBuilder,private _auth: AuthService,
               private _router: Router) { }
 
+ isChecked: boolean;
+ isCheckedName: any;
+ checkboxData = ["Admin","User"];
+ onChange(e){ 
+   this.rolesArray = [];      
+    this.isChecked = !this.isChecked;
+    this.isCheckedName = e.target.name;
+    let body = this.registerUserForm.value;
+    if(this.isCheckedName=="User"){
+     this.rolesArray.push({role:"LIBUSER"});
+     
+    }else{
+    
+    this.rolesArray.push({role:"LIBADMIN"});
+  }
+  }
+             
   ngOnInit() {
   }
 
+
+
   registerUser() {
-    this._auth.registerUser(this.registerUserData)
+    this.registerUserForm.value.roles = this.rolesArray;
+    let form = JSON.stringify(this.registerUserForm.value);
+    form = JSON.parse(form);
+    this._auth.registerUser(form)
     .subscribe(
       res => {
-        //localStorage.setItem('token', res.token)
+        
         this._router.navigate(['/'])
       },
       err => console.log(err)
     )      
   }
 
+
+}
+export interface Role {
+  //id:number;
+  role: string;
 
 }

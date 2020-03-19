@@ -61,10 +61,10 @@ public class BookController {
 
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<Book> getAllBooks() {
-//        return bookService.getAllBooks();
-//    }
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
 //http://192.168.8.100:43267/book/allBooks?search=subject:history
     @RequestMapping(method = RequestMethod.GET, value = "/allBooks")
     @ResponseBody
@@ -87,6 +87,7 @@ public class BookController {
     }
 
 
+    //@CrossOrigin(value = "http://localhost:4200/bookshelf")
     @RequestMapping(value = "/avilableBooks")
     public List<Book> getAvailableBooks(){
         return bookService.getAllAvailableBooks();

@@ -1,9 +1,12 @@
 package lk.chethana.apigateway.controller;
 
+import lk.chethana.apigateway.dto.UserDTO;
 import lk.chethana.apigateway.model.AuthResponse;
+import lk.chethana.apigateway.model.Customer;
 import lk.chethana.apigateway.model.LoginRequest;
 import lk.chethana.apigateway.model.User;
 import lk.chethana.apigateway.service.AuthService;
+import lk.chethana.apigateway.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +23,9 @@ public class AuthController {
 
     @Autowired
     private AuthService loginService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @CrossOrigin("*")
     @PostMapping("/signin")
@@ -86,10 +92,25 @@ public class AuthController {
     @PostMapping("/register")
     @CrossOrigin("*")
     @ResponseBody
-    public ResponseEntity<AuthResponse> createNewUser(@RequestBody User user) {
+    public ResponseEntity<AuthResponse> createNewUser(@RequestBody UserDTO user) {
         String pwd = user.getPassword();
-        user = loginService.saveUser(user);
-        String token = loginService.login(user.getUsername(), pwd);
+        User user1 = new User();
+        user1.setUsername(user.getUsername());
+        user1.setPassword(user.getPassword());
+        user1.setRoles(user.getRoles());
+        user1 = loginService.saveUser(user1);
+
+        Customer customer=new Customer();
+        customer.setFirstName(user.getFirstName());
+        customer.setLastName(user.getLastName());
+        customer.setContactNumber(user.getContactNumber());
+        customer.setEmail(user.getUsername());
+        customer.setAddress(user.getAddress());
+
+
+        String token = loginService.login(user1.getUsername(), pwd);
+        customerService.saveCustomer(customer,token);
+
         HttpHeaders headers = new HttpHeaders();
         List<String> headerList = new ArrayList<>();
         List<String> exposeList = new ArrayList<>();

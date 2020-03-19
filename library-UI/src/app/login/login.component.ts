@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router'
-import {AuthService} from "../auth.service";
+import {AuthService} from "../services/auth.service";
 
 
 @Component({
@@ -13,8 +13,8 @@ import {AuthService} from "../auth.service";
 
 export class LoginComponent implements OnInit {
 
-  authToken: string;
 
+  
   loginUserData ={username:"",password:""}
 
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       res => {
         
         localStorage.setItem('token', res.accessToken)
-        this._router.navigate(['/bookshelf'])
+        this._router.navigate(['/home'])
       },
       err => console.log(err)
     ) 

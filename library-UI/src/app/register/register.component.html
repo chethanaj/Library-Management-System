@@ -1,3 +1,5 @@
+<div class="container" style="height: 100%;width: 100%;">
+
 <div class="py-5">
     <div class="row">
       <div class="col-md-6 mx-auto">
@@ -9,16 +11,55 @@
             <h3 class="mb-0">Register</h3>
           </div>
           <div class="card-body">
-            <form class="form">
+            <form [formGroup]="registerUserForm" (ngSubmit)="registerUser()">
               <div class="form-group">
                 <label for="uname1">Username</label>
-                <input type="text" [(ngModel)]="registerUserData.username" name="username" class="form-control rounded-0" required>
+                <input type="text" formControlName="username" class="form-control rounded-0" required>
               </div>
               <div class="form-group">
                 <label>Password</label>
-                <input type="password" [(ngModel)]="registerUserData.password" name="password" class="form-control rounded-0"  required>
+                <input type="password" formControlName="password" class="form-control rounded-0"  required>
               </div>
-              <button type="button" (click)="registerUser()" class="btn btn-primary float-right">Register</button>
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" formControlName="firstName" class="form-control rounded-0"  required>
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control rounded-0"  required>
+              </div>
+              <div class="form-group">
+                <label>Contact Number</label>
+                <input type="number" formControlName="contactNumber" class="form-control rounded-0"  required>
+              </div>
+              <div formGroupName="address">
+                <h3>Address</h3>
+            
+                <label>
+                  Street Number:
+                  <input type="text" formControlName="streetNumber" class="form-control rounded-0"  required>
+                </label>
+            
+                <label>
+                  City:
+                  <input type="text" formControlName="city" class="form-control rounded-0"  required>
+                </label>
+                
+                <label>
+                  Country:
+                  <input type="text" formControlName="country" class="form-control rounded-0"  required>
+                </label>
+            
+              </div>
+              <div class="form-group" formGroupName="roles">
+                <div *ngFor="let name of checkboxData">
+                  <input type="checkbox" [name]="name" (change)="onChange($event)" [disabled]="isChecked && (isCheckedName!=name)"> {{name}}
+                   </div>
+                
+              </div>
+              
+
+              <button type="submit"  class="btn btn-primary float-right">Register</button>
             </form>
           </div>
           <!--/card-block-->

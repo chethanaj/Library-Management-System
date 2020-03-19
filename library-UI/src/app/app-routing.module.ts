@@ -1,18 +1,19 @@
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
-import {BookshelfComponent} from "./bookshelf/bookshelf.component";
+
+
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/events',
-  //   pathMatch: 'full'
-  // },
+
+
+
+
 
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   },
   {
@@ -20,8 +21,14 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'bookshelf',
-    component: BookshelfComponent
+    path : 'home',
+    component: AdminLayoutComponent,
+    children: [
+      {
+    path: '',
+    loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+    
+}]
   }
 ];
 

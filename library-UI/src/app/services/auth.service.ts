@@ -12,7 +12,7 @@ export class AuthService {
               private _router: Router) { }
 
   registerUser(user) {
-    return this.http.post<any>(this._registerUrl, user,{observe: 'response'})
+    return this.http.post<any>(this._registerUrl, user)
   }
 
   loginUser(user) {
@@ -21,7 +21,7 @@ export class AuthService {
 
   logoutUser() {
     localStorage.removeItem('token')
-    this._router.navigate(['/register'])
+    this._router.navigate(['/'])
   }
 
 
