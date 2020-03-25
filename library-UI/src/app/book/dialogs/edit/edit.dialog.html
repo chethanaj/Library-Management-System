@@ -1,0 +1,80 @@
+<div class="container">
+  <h3 mat-dialog-title>Book id: {{data.id}}</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+       
+      </mat-form-field>
+    </div>
+
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="ISBN" [(ngModel)]="data.isbn" name="isbn" required ></textarea>
+       
+      </mat-form-field>
+    </div>
+    
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Title" [(ngModel)]="data.title" name="title" required >
+        
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Subject" [(ngModel)]="data.subject" name="subject">
+        </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Publisher" [(ngModel)]="data.publisher" name="publisher">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Language" [(ngModel)]="data.language" name="language">
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="NoOfPAges" [(ngModel)]="data.noOfPages" name="noOfPages">
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Status" [(ngModel)]="data.status" name="status">
+      </mat-form-field>
+    </div>
+
+  
+    <div class="form-group">
+      <mat-form-field class="multiple-items">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let author of authorsArray" [selectable]="selectable" [removable]="removable"
+            (removed)="remove(author)">
+            {{author.authorName}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Add authors" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)" required>
+        </mat-chip-list>
+        <i class="material-icons tooltip-info" matTooltip="Enter author name and press enter to add multiple authors">
+          info
+        </i>
+      </mat-form-field>
+      </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

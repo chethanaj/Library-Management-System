@@ -55,13 +55,15 @@ export class BookService {
   // DEMO ONLY, you can find working methods below
 
   //
-  // updateIssue (issue: Issue): void {
-  //   this.dialogData = issue;
-  // }
+  updateBook (book: Bookapi): void {
+  this.httpClient.put<any>('http://localhost:8081/book-api/book/'+book.id,book,this.httpOptions).subscribe();
+      
+  }
   //
-  // deleteIssue (id: number): void {
-  //   console.log(id);
-  // }
+  deleteBook(id: number): void {
+    this.httpClient.delete<any>('http://localhost:8081/book-api/book/'+id,this.httpOptions).subscribe();
+    
+  }
 }
 
 

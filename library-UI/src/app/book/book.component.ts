@@ -1,8 +1,11 @@
+import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
+import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
 import {HttpClient } from '@angular/common/http';
 import {Component, ViewChild, OnInit, ElementRef} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { BookService } from "../services/book.service";
+
 
 import {merge, Observable,BehaviorSubject, fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -19,10 +22,11 @@ import {DataSource} from "@angular/cdk/table";
 })
 export class BookComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'isbn', 'title', 'subject', 'publisher', 'language', 'noOfPages', 'status', 'authors'];
+  displayedColumns: string[] = ['id', 'isbn', 'title', 'subject', 'publisher', 'language', 'noOfPages', 'status', 'authors','update','delete'];
 
   exampleDatabase: BookService | null;
   dataSource: ExampleDataSource | null;
+  id: number;
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
@@ -41,6 +45,44 @@ export class BookComponent implements OnInit {
   refresh() {
     this.loadData();
   }
+
+  startEdit(id: number, isbn: string, title: string, subject: string, publisher: string, language: string,noOfPages:number,status:string,authors:string[]) {
+    this.id = id;
+  
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: {id: id, isbn: isbn, title: title, subject: subject, publisher: publisher, language: language, noOfPages:noOfPages, status:status,authors:authors}
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // When using an edit things are little different, firstly we find record inside DataService by id
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        // Then you update that record using data from dialogData (values you enetered)
+        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        // And lastly refresh table
+        this.refreshTable();
+      }
+    });
+  }
+
+  deleteItem(id: number, isbn: string, title: string) {
+  
+    this.id = id;
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {id: id, isbn: isbn, title: title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        // for delete we use splice in order to remove single object from DataService
+        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.refreshTable();
+      }
+    });
+  }
+
 
   private refreshTable() {
     // Refreshing table using paginator
@@ -103,7 +145,7 @@ export class ExampleDataSource extends DataSource<Bookapi> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((book: Bookapi) => {
-          const searchStr = (book.id + book.title + book.isbn + book.subject).toLowerCase();
+          const searchStr = (book.id + book.title + book.isbn + book.subject,book.status,book.language).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -137,7 +179,7 @@ export class ExampleDataSource extends DataSource<Bookapi> {
         case 'language': [propertyA, propertyB] = [a.language, b.language]; break;
         case 'isbn': [propertyA, propertyB] = [a.isbn, b.isbn]; break;
         case 'subject': [propertyA, propertyB] = [a.subject, b.subject]; break;
-        case 'noOfPages': [propertyA, propertyB] = [a.noOfPages, b.noOfPages]; break;
+        case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

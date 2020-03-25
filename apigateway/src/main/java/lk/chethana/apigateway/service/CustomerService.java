@@ -2,6 +2,7 @@ package lk.chethana.apigateway.service;
 
 
 import lk.chethana.apigateway.model.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,8 +10,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class CustomerService {
 
-//    @Autowired
-//    RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 //
 //    @Autowired
 //    HttpHeaders httpHeaders;

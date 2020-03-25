@@ -15,32 +15,32 @@ export class AdminLayoutComponent implements OnInit {
   constructor(public _authService: AuthService) {}
 
   ngOnInit() {
-    if (window.innerWidth < 768) {
-      this.sidenav.fixedTopGap = 100;
-      this.opened = false;
-    } else {
-      this.sidenav.fixedTopGap = 100;
-      this.opened = true;
-    }
+    // if (window.innerWidth < 768) {
+    //   this.sidenav.fixedTopGap = 100;
+    //   this.opened = false;
+    // } else {
+    //   this.sidenav.fixedTopGap = 100;
+    //   this.opened = true;
+    // }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    if (event.target.innerWidth < 768) {
-      this.sidenav.fixedTopGap = 60;
-      this.opened = false;
-    } else {
-      this.sidenav.fixedTopGap = 60
-      this.opened = true;
-    }
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event) {
+  //   if (event.target.innerWidth < 768) {
+  //     this.sidenav.fixedTopGap = 60;
+  //     this.opened = false;
+  //   } else {
+  //     this.sidenav.fixedTopGap = 60
+  //     this.opened = true;
+  //   }
+  // }
 
-  isBiggerScreen() {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (width < 768) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // isBiggerScreen() {
+  //   const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  //   if (width < 768) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

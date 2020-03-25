@@ -60,7 +60,7 @@ export class AddBookComponent implements OnInit  {
     }
   }
 
-  /* Add dynamic languages */
+  /* Add dynamic authors */
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;

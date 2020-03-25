@@ -9,7 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.Transient;
@@ -29,6 +31,10 @@ public class ApiGatewayApplication {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Bean
+    RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
     @PostConstruct
     @Transient
     public void userNew(){

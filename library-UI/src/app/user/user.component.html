@@ -38,18 +38,13 @@
       </ng-container>
 
       <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef>Address</th>
-        <td mat-cell *matCellDef="let row">
-          <div class="address">
-            <ng-container  *ngFor="let item of row.address">
-              <div class="item">
+        <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+        <mat-cell *matCellDef="let row">
                
-                <span>{{item.streetNumber}}</span>
-
+                <span>{{row.address.streetNumber}}, </span>
+                <span>{{row.address.city}}, </span>
+                <span>{{row.address.country}}</span> </mat-cell>
                
-              </div>
-            </ng-container>
-          </div>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
