@@ -2,23 +2,24 @@ package lk.chethana.apigateway.service;
 
 
 import lk.chethana.apigateway.model.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class CustomerService {
 
-    @Autowired
-    private RestTemplate restTemplate;
-//
-//    @Autowired
-//    HttpHeaders httpHeaders;
+    private final RestTemplate restTemplate;
+
+    public CustomerService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public Customer saveCustomer(Customer customer,String token){
 
-        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers=new HttpHeaders();
         headers.add("Authorization",token);
         HttpEntity<Customer> request = new HttpEntity<>(customer,headers);

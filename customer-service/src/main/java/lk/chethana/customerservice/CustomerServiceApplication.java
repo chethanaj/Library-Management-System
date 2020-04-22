@@ -1,10 +1,10 @@
 package lk.chethana.customerservice;
 
-        import org.springframework.boot.SpringApplication;
-        import org.springframework.boot.autoconfigure.SpringBootApplication;
-        import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"lk.chethana.security","lk.chethana.customerservice"})
 @EnableDiscoveryClient
 public class CustomerServiceApplication {
 

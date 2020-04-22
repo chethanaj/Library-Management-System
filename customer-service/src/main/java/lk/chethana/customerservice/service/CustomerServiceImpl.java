@@ -20,8 +20,9 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Customer findByUsername(String username) {
-        return customerRepository.findByEmail(username);
+    public Optional <Customer> getCustomerByEmail(String email) {
+
+        return customerRepository.findByEmail(email);
     }
 
     public List <Customer> getAllCustomers(){return customerRepository.findAll();}
@@ -30,4 +31,5 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
+
 }

@@ -20,7 +20,7 @@
   <!-- Sidenav -->
   <mat-sidenav #sidenav opened mode="side">
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" routerLink="home/add-book">
+      <a *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/add-book">
         <mat-icon>add</mat-icon> Add Book
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="home/books-list">
@@ -28,6 +28,21 @@
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="home/user">
         <mat-icon>account_circle_icon</mat-icon> View Users
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="home/user-history">
+        <mat-icon>history</mat-icon> User History
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="home/lend-book">
+        <mat-icon>library_books</mat-icon> Issue Book
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="home/reserve-book">
+        <mat-icon>queue</mat-icon> Reserve Book
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="home/return-book">
+        <mat-icon>assignment_return</mat-icon> Return Book
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="home/due-book">
+        <mat-icon>assignment_late</mat-icon> Due Books
       </a>
     </mat-nav-list>
   </mat-sidenav>

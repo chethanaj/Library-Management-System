@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: api-gateway
+  datasource:
+    url: jdbc:mysql://localhost:3306/ApiGateway_DB?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: create
+server:
+  port: 8081
+eureka:
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    bookService:
+      sensitiveHeaders: Cookie
+      path: /book-api/**
+      serviceId: book-service
+    customerService:
+      sensitiveHeaders: Cookie
+      path: /customer-api/**
+      serviceId: customer-service
+    lendService:
+      sensitiveHeaders: Cookie
+      path: /lend-api/**
+      serviceId: lend-service
+    inventoryService:
+      sensitiveHeaders: Cookie
+      path: /inventory-api/**
+      serviceId: inventory-service
+  host:
+    socket-timeout-millis: 60000
+ribbon:
+  ReadTimeout: 60000

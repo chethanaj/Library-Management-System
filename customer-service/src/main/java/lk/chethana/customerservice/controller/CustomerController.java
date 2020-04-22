@@ -20,6 +20,7 @@ public class CustomerController {
         return customerService.getCustomerById(id);
     }
 
+    
     @RequestMapping(method = RequestMethod.GET)
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
@@ -29,6 +30,11 @@ public class CustomerController {
     public Customer saveCustomer(@RequestBody Customer customer){
                 return customerService.saveCustomer(customer);
 
+    }
+
+    @RequestMapping(value = "/getByMail/{email}",method = RequestMethod.GET)
+    public Optional<Customer> getCustomerByEmail(@PathVariable String email) {
+        return customerService.getCustomerByEmail(email);
     }
 
 

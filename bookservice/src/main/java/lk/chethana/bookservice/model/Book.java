@@ -3,6 +3,7 @@ package lk.chethana.bookservice.model;
 import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,10 +23,10 @@ public class Book {
     private Integer noOfPages;
     private BookStatus status;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "bookid",referencedColumnName = "id"),
             inverseJoinColumns = {@JoinColumn(name = "authorid",referencedColumnName = "id")})
-    private List<Author> authors;
+    private List<Author> authors = new ArrayList<>();
 
 
 }

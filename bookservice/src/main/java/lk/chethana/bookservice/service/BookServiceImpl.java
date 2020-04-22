@@ -6,6 +6,7 @@ import lk.chethana.bookservice.model.SearchCriteria;
 import lk.chethana.bookservice.repository.BookRepository;
 import lk.chethana.bookservice.repository.BookRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +52,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getAllAvailableBooks() {
         return bookRepository.findByStatus(BookStatus.AVAILABLE);
+    }
+
+    @Override
+    public List<Book> getAllLoanedBooks() {
+        return bookRepository.findByStatus(BookStatus.LOANED);
     }
 }

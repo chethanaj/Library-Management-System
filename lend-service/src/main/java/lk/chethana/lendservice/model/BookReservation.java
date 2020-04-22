@@ -20,6 +20,7 @@ public class BookReservation {
     private Integer customerId;
     private Integer bookId;
     private String isbn;
+    private Boolean isReserved;
 
 
 

@@ -1,6 +1,5 @@
 package lk.chethana.lendservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -19,10 +18,10 @@ public class BookLending {
     private Integer id;
     private Date creationDate;
     private Date returnDate;
-    private Integer dueDates;
     private Integer customerId;
     private Integer bookId;
     private String isbn;
+    private Boolean returned;
 
 
 }

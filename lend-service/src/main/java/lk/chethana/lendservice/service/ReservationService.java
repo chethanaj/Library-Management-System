@@ -11,4 +11,7 @@ public interface ReservationService {
     List<BookReservation> fetchAllReservingBooks();
 
     List<BookReservation> getReservingByCustomerId(Integer id);
+
+    BookReservation findOne(Integer id);
+
 }

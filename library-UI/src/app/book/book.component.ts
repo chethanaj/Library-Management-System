@@ -85,9 +85,7 @@ export class BookComponent implements OnInit {
 
 
   private refreshTable() {
-    // Refreshing table using paginator
-    // Thanks yeager-j for tips
-    // https://github.com/marinantonio/angular-mat-table-crud/issues/12
+   
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
@@ -145,7 +143,7 @@ export class ExampleDataSource extends DataSource<Bookapi> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((book: Bookapi) => {
-          const searchStr = (book.id + book.title + book.isbn + book.subject,book.status,book.language).toLowerCase();
+          const searchStr = (book.title,book.isbn,book.subject,book.status,book.language).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

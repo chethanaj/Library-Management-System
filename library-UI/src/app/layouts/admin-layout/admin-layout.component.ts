@@ -11,10 +11,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AdminLayoutComponent implements OnInit {
  
   opened = true;
+  isAdmin = false;
   @ViewChild('sidenav') sidenav: MatSidenav;
   constructor(public _authService: AuthService) {}
 
   ngOnInit() {
+    this.isAdmin = this._authService.isAdminLogin();
     // if (window.innerWidth < 768) {
     //   this.sidenav.fixedTopGap = 100;
     //   this.opened = false;

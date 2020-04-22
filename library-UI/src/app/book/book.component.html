@@ -83,7 +83,7 @@
           <th mat-header-cell *matHeaderCellDef> Update </th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button color="accent" (click)="startEdit(row.id,row.isbn,row.title,row.subject,row.publisher,row.language,row.noOfPages,row.status,row.authors.authorName)">
-                <mat-icon class="mat-18">system_update</mat-icon>
+                <mat-icon class="mat-18" color="primary">create</mat-icon>
             </button>
           </td>
         </ng-container>
@@ -92,7 +92,7 @@
             <th mat-header-cell *matHeaderCellDef> Delete </th>
             <td mat-cell *matCellDef="let row">
               <button mat-icon-button color="warn" (click)="deleteItem(row.id,row.title,row.isbn)">
-                  <mat-icon class="mat-18">delete</mat-icon>
+                  <mat-icon class="mat-18" color="primary">delete</mat-icon>
               </button>
             </td>
           </ng-container>

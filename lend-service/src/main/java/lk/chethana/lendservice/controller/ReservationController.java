@@ -6,6 +6,8 @@ import lk.chethana.lendservice.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -16,10 +18,24 @@ public class ReservationController {
     ReservationService reservationService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public BookReservation save(@RequestBody BookReservation bookReservation) {
+    public BookReservation reserve(@RequestBody BookReservation bookReservation) {
 
-        return reservationService.save(bookReservation);
+        Date date=Date.valueOf(LocalDate.now());
+        bookReservation.setCreationDate(date);
+        bookReservation.setIsReserved(true);
+        BookReservation reservation = reservationService.save(bookReservation);
+
+        return reservation;
     }
+
+    @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)
+    public BookReservation cancel(@PathVariable Integer id) {
+
+        BookReservation reservation = reservationService.findOne(id);
+        reservation.setIsReserved(false);
+        return reservationService.save(reservation);
+    }
+
 
     @RequestMapping(method = RequestMethod.GET)
     public List<BookReservation> findAll() {

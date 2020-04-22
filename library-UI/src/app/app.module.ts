@@ -15,6 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BookService } from "../app/services/book.service";
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
 import { DemoMaterialModule } from './shared/shared.module';
+import { UserHistoryComponent } from './user-history/user-history.component';
+import { HistoryService } from './services/history.service';
+import { ReservationService } from './services/reservation.service';
+import { DueBookService } from './services/dueBook.service';
+
 
 
 
@@ -25,11 +30,7 @@ import { DemoMaterialModule } from './shared/shared.module';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AdminLayoutComponent,
-    
-    
-   
-
+    AdminLayoutComponent,  
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,7 @@ import { DemoMaterialModule } from './shared/shared.module';
     BrowserAnimationsModule,
     DemoMaterialModule,
   ],
-  providers: [AuthService,  AuthGuard,BookService,UserService],
+  providers: [AuthService,  AuthGuard,BookService,UserService,UserHistoryComponent,HistoryService,ReservationService,DueBookService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

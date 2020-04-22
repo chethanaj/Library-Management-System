@@ -29,7 +29,11 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res => {
         
-        localStorage.setItem('token', res.accessToken)
+        localStorage.setItem('token', res.accessToken);
+        localStorage.setItem('username', res.userName);
+        localStorage.setItem('roles', res.userRoles);
+        localStorage.setItem('userId', res.userId);
+
         this._router.navigate(['/home'])
       },
       err => console.log(err)

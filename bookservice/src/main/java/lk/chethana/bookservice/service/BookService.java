@@ -15,4 +15,5 @@ public interface BookService {
 
     List<Book> search(List<SearchCriteria> params);
     List<Book> getAllAvailableBooks();
+    List<Book> getAllLoanedBooks();
 }

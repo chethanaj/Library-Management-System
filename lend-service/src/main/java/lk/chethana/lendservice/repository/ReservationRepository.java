@@ -11,4 +11,7 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<BookReservation,Integer> {
 
     List<BookReservation> findByCustomerId(Integer customerId);
+
+    List<BookReservation> findByCustomerIdAndIsReserved(Integer customerId, Boolean reserved);
+
 }

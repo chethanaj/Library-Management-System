@@ -7,11 +7,13 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 @Injectable()
 export class BookService {
   private readonly VIEW_BOOK = 'http://localhost:8081/book-api/book';
+  private readonly VIEW_LEND = 'http://localhost:8081/lend-api/book';
+
   //private ADD_BOOK ='';
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Authorization':  localStorage.getItem('token'),
+      'Authorization':  'Bearer ' + localStorage.getItem('token'),
       'Content-Type': 'application/json',
     })
   };
@@ -41,28 +43,45 @@ export class BookService {
       });
   }
 
+  getAvailableBooks():void{
+    this.httpClient.get<Bookapi[]>(this.VIEW_BOOK+'/availableBooks',this.httpOptions).subscribe(data => {
+      this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+    });
+  }
 
-    // // ADD, POST METHOD
-    // addItem(kanbanItem: KanbanItem): void {
-    //   this.httpClient.post(this.VIEW_BOOK, kanbanItem).subscribe(data => {
-    //     this.dialogData = kanbanItem;
-    //     this.toasterService.showToaster('Successfully added', 3000);
-    //     },
-    //     (err: HttpErrorResponse) => {
-    //     this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-    //   });
-    //  }
-  // DEMO ONLY, you can find working methods below
+  //loanedBooks
+  getLoanedBooks():void{
+    this.httpClient.get<Bookapi[]>(this.VIEW_BOOK+'/loanedBooks',this.httpOptions).subscribe(data => {
+      this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+    });
+  }
 
-  //
+  //updateStatus/{id}
   updateBook (book: Bookapi): void {
-  this.httpClient.put<any>('http://localhost:8081/book-api/book/'+book.id,book,this.httpOptions).subscribe();
+  this.httpClient.post<any>('http://localhost:8081/book-api/book/'+book.id,book,this.httpOptions).subscribe();
       
   }
   //
   deleteBook(id: number): void {
     this.httpClient.delete<any>('http://localhost:8081/book-api/book/'+id,this.httpOptions).subscribe();
     
+  }
+
+  //after return book
+  updateBookStatus(book:Bookapi):void{
+    this.httpClient.post<any>('http://localhost:8081/lend-api/lend/return/'+book.id,book,this.httpOptions).subscribe();
+      
+  }
+
+  issueBook(book:History):void{
+    this.httpClient.post<any>('http://localhost:8081/lend-api/lend',book,this.httpOptions).subscribe();
+      
   }
 }
 

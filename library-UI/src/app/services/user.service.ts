@@ -12,7 +12,7 @@ export class UserService {
   
   private httpOptions = {
     headers: new HttpHeaders({
-      'Authorization':  localStorage.getItem('token'),
+      'Authorization':  'Bearer '+localStorage.getItem('token'),
       'Content-Type': 'application/json',
     })
   };

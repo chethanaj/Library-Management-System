@@ -1,7 +1,7 @@
 package lk.chethana.apigateway.dto;
 
 import lk.chethana.apigateway.model.Address;
-import lk.chethana.apigateway.model.Role;
+import lk.chethana.security.entity.Role;
 import lombok.Data;
 
 import java.util.List;

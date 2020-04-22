@@ -28,4 +28,9 @@ public class ReservationServiceImpl implements ReservationService{
     public List<BookReservation> getReservingByCustomerId(Integer id) {
         return reservationRepository.findByCustomerId(id);
     }
+
+    @Override
+    public BookReservation findOne(Integer id) {
+        return reservationRepository.getOne(id);
+    }
 }
