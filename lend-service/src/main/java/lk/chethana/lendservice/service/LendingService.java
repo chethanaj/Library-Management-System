@@ -17,7 +17,7 @@ public interface LendingService {
     List<BookLending> getLendingByCustomerId(Integer id);
 
     List<DueBook> getDueBookListByCustomerId(Integer id);
-    List<DueBook> getDueBookList(Integer id);
+    List<DueBook> getDueBookList();
 
     BookLending findOne(Integer id);
     BookLending findByBookId(Integer bookId);

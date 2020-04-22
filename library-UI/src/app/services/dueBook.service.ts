@@ -53,13 +53,14 @@ export class DueBookService {
     
 //   }
 
-  getLoanedBooks():void{
-//     this.httpClient.get<History[]>(this.LEND_BOOK,this.httpOptions).subscribe(data => {
-//       this.dataChange.next(data);
-//     },
-//     (error: HttpErrorResponse) => {
-//       console.log (error.name + ' ' + error.message);
-//     });
+//allDueBooks
+getDueBooks():void{
+    this.httpClient.get<DueBook[]>(this.LEND_BOOK+'allDueBooks',this.httpOptions).subscribe(data => {
+      this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+    });
    }
 
   

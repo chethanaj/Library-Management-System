@@ -44,21 +44,8 @@ public class LendingServiceImpl implements LendingService {
         List<BookLending> list = lendingRepository.findAllByCustomerIdAndReturned(id, false);
         List<DueBook> dueBooks = new ArrayList<>();
         Date date = Date.valueOf(LocalDate.now());
-        for (BookLending bookLending:list) {
-            DueBook dueBook = new DueBook();
-            dueBook.setUserId(bookLending.getCustomerId());
-            dueBook.setExpectedReturnDate(bookLending.getReturnDate());
-            dueBook.setIssueDate(bookLending.getCreationDate());
-            dueBook.setBookId(bookLending.getBookId());
-
-            Date expectedReturnedDate = bookLending.getReturnDate();
-
-            DateTime from = new DateTime(expectedReturnedDate);
-            DateTime to = new DateTime(date);
-            Days dueDates = Days.daysBetween(from,to);
-            dueBook.setLateDates(dueDates.getDays());
-            dueBook.setFine(dueDates.getDays() * 5);
-            dueBooks.add(dueBook);
+        for (BookLending bookLending : list) {
+            dueBooks.add(getDueBookData(bookLending, date));
         }
 
         return dueBooks;
@@ -75,7 +62,33 @@ public class LendingServiceImpl implements LendingService {
     }
 
     @Override
-    public List<DueBook> getDueBookList(Integer id) {
-        return null;
+    public List<DueBook> getDueBookList() {
+        List<DueBook> dueBooks = new ArrayList<>();
+        Date date = Date.valueOf(LocalDate.now());
+
+        List<BookLending> list = lendingRepository.findAllByReturnedAndReturnDateIsBefore(false, date);
+        for (BookLending bookLending : list) {
+            dueBooks.add(getDueBookData(bookLending, date));
+        }
+
+        return dueBooks;
+    }
+
+    private DueBook getDueBookData(BookLending bookLending, Date date) {
+        DueBook dueBook = new DueBook();
+        dueBook.setUserId(bookLending.getCustomerId());
+        dueBook.setExpectedReturnDate(bookLending.getReturnDate());
+        dueBook.setIssueDate(bookLending.getCreationDate());
+        dueBook.setBookId(bookLending.getBookId());
+        dueBook.setIsbn(bookLending.getIsbn());
+
+        Date expectedReturnedDate = bookLending.getReturnDate();
+
+        DateTime from = new DateTime(expectedReturnedDate);
+        DateTime to = new DateTime(date);
+        Days dueDates = Days.daysBetween(from, to);
+        dueBook.setLateDates(dueDates.getDays());
+        dueBook.setFine(dueDates.getDays() * 5);
+        return dueBook;
     }
 }

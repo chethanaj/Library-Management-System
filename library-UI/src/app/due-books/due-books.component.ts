@@ -23,7 +23,7 @@ import { DueDialogComponent } from './dialogs/due/due.dialog.component';
 export class DueBooksComponent implements OnInit {
 
  
-  displayedColumns: string[] = ['isbn', 'bookId','userId','issueDate','expectedReturnDate','lateDates','fine','return'];
+  displayedColumns: string[] = ['isbn', 'bookId','userId','issueDate','expectedReturnDate','lateDates','fine'];
 
   exampleDatabase: DueBookService | null;
   dataSource: ExampleDataSource | null;
@@ -121,14 +121,15 @@ export class ExampleDataSource extends DataSource<DueBook> {
       this._paginator.page
     ];
 
-    //this._exampleDatabase.getLoanedBooks();
+    this._exampleDatabase.getDueBooks();
 
 
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((duebooks: DueBook) => {
-          const searchStr = (duebooks.isbn).toLowerCase();
-          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+          const searchStr = (duebooks.bookId)
+          //return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+          return searchStr;
         });
 
         // Sort filtered data
@@ -156,8 +157,8 @@ export class ExampleDataSource extends DataSource<DueBook> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.userId, b.userId]; break;
-        case 'isbn': [propertyA, propertyB] = [a.isbn, b.isbn]; break;
+        case 'userId': [propertyA, propertyB] = [a.userId, b.userId]; break;
+       // case 'isbn': [propertyA, propertyB] = [a.isbn, b.isbn]; break;
        
         
       }
