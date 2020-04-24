@@ -48,7 +48,7 @@ public class LendingController {
         return lendingService.fetchAllLendingBooks();
     }
 
-    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<BookLending> getLendingByCustomerId(@PathVariable Integer id) {
         return lendingService.getLendingByCustomerId(id);
@@ -91,7 +91,7 @@ public class LendingController {
         return bookLending;
     }
 
-    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
+//    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
     @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
     public BookLending returnBook(@PathVariable Integer id, @RequestHeader("Authorization") String authorization) {
 

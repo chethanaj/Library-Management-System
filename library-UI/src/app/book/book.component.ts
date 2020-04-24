@@ -67,7 +67,8 @@ export class BookComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
-        this.refreshTable();
+        //this.refreshTable();
+        this.ngOnInit();
       }
     });
   }
@@ -149,7 +150,7 @@ export class ExampleDataSource extends DataSource<Bookapi> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((book: Bookapi) => {
-          const searchStr = (book.id+book.title+book.isbn+book.subject+book.status+book.language).toLowerCase();
+          const searchStr = (book.title+book.id+book.isbn+book.subject+book.status+book.language).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

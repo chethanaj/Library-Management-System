@@ -17,4 +17,7 @@ public interface ReservationRepository extends JpaRepository<BookReservation,Int
 
     Optional<BookReservation> findById(Integer id);
 
+    List<BookReservation> findByCustomerIdAndIsReserved(Integer customerId,Boolean isReserved);
+
+
 }

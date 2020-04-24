@@ -56,8 +56,14 @@ getDueBooks():void{
   ///dueBook/{id}
 
   getFineForUser():void{
-   
-    this.httpClient.get<DueBook[]>(this.LEND_BOOK+'dueBook/'+ localStorage.getItem('userId'),this.httpOptions).subscribe(data => {
+    let url = this.LEND_BOOK;
+    if(!this._authService.isAdminLogin()){
+      url = this.LEND_BOOK+'dueBook/'+localStorage.getItem('userId');
+    }else{
+      url = this.LEND_BOOK+'allDueBooks';
+
+    }
+    this.httpClient.get<DueBook[]>(url,this.httpOptions).subscribe(data => {
       this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {

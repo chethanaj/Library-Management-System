@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userLogo', res.userLogo);
         
 
-        this._router.navigate(['/home'])
+        this._router.navigate(['home/home/books-list'])
       },
       err => console.log(err)
     ) 

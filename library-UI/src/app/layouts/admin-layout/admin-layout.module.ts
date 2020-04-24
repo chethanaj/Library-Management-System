@@ -21,6 +21,8 @@ import { ReturnBookComponent } from 'src/app/return-book/return-book.component';
 import { ReturnDialogComponent } from 'src/app/return-book/dialogs/return/return.dialog.component';
 import { ViewReservedComponent } from 'src/app/view-reserved/view-reserved.component';
 import { RemoveReserveDialogComponent } from 'src/app/view-reserved/dialogs/removeReserve/removeReserve.dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -32,6 +34,8 @@ import { RemoveReserveDialogComponent } from 'src/app/view-reserved/dialogs/remo
     FormsModule,
     ReactiveFormsModule,
     DemoMaterialModule,
+    MatFormFieldModule,
+    MatInputModule,
   
     
   ],

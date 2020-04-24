@@ -5,7 +5,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input disabled #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+        <input matInput disabled class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" >
        
       </mat-form-field>
     </div>
@@ -13,43 +13,45 @@
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="ISBN" [(ngModel)]="data.isbn" name="isbn" required ></textarea>
+        <textarea matInput class="form-control" placeholder="ISBN" [(ngModel)]="data.isbn" name="isbn" required ></textarea>
        
       </mat-form-field>
     </div>
     
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #inputstate class="form-control" placeholder="Title" [(ngModel)]="data.title" name="title" required >
+        <input matInput  class="form-control" placeholder="Title" [(ngModel)]="data.title" name="title" required >
         
       </mat-form-field>
     </div>
 
     <div class="form">
         <mat-form-field color="accent">
-          <input matInput placeholder="Subject" [(ngModel)]="data.subject" name="subject">
+          <input matInput class="form-control"  placeholder="Subject" [(ngModel)]="data.subject" name="subject">
         </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Publisher" [(ngModel)]="data.publisher" name="publisher">
+        <input matInput class="form-control" placeholder="Publisher" [(ngModel)]="data.publisher" name="publisher">
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Language" [(ngModel)]="data.language" name="language">
+        <input matInput class="form-control" placeholder="Language" [(ngModel)]="data.language" name="language">
       </mat-form-field>
     </div>
+
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="NoOfPAges" [(ngModel)]="data.noOfPages" name="noOfPages">
+        <input matInput  class="form-control" placeholder="NoOfPAges" [(ngModel)]="data.noOfPages" name="noOfPages">
       </mat-form-field>
     </div>
+
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Status" [(ngModel)]="data.status" name="status">
+        <input matInput class="form-control" placeholder="Status" [(ngModel)]="data.status" name="status">
       </mat-form-field>
     </div>
 

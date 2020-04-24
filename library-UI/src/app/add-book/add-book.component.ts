@@ -92,7 +92,7 @@ onSubmit() {
     (res) => {
       alert("Success !!!");
       //console.log(res),
-    //this.router.navigate(['home/books-list']);
+      this.router.navigate(['home/home/books-list']);
     // this.profileForm.reset();
     // this.authorsArray=[];
    // window.location.href="http://localhost:4200/home/home/books-list";

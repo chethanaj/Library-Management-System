@@ -5,10 +5,10 @@
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
-    <h1>Public Library</h1>
+    Public Library
     <span class="menu-spacer"></span>
     <span style="flex: 1 1 auto;"></span>
-    <h6>{{userEmail}}</h6>
+    <mat-icon>account_circle</mat-icon>{{userEmail}}
     <div>
       <a mat-button class="nav-link" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>        
 
@@ -45,7 +45,7 @@
       <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/due-book">
         <mat-icon>assignment_late</mat-icon> Due Books
       </a>
-      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/view-reserved">
+      <a  mat-list-item routerLinkActive="active" routerLink="home/view-reserved">
         <mat-icon>assignment</mat-icon> View Reserved
       </a>
       

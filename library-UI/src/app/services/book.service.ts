@@ -3,12 +3,13 @@ import { Bookapi } from './../models/bookapi';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class BookService {
   private readonly VIEW_BOOK = 'http://localhost:8081/book-api/book';
   private readonly VIEW_LEND = 'http://localhost:8081/lend-api/book';
-
+  router: Router;
   //private ADD_BOOK ='';
 
   private httpOptions = {
@@ -23,7 +24,9 @@ export class BookService {
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+   
+   }
 
   get data(): Bookapi[] {
     return this.dataChange.value;
@@ -67,6 +70,7 @@ export class BookService {
     this.httpClient.post<any>('http://localhost:8081/book-api/book/' + book.id, book, this.httpOptions).subscribe((res) => {
       alert("Success !!!");
       //window.location.href = "http://localhost:4200/home/home/books-list";
+      //this.router.navigateByUrl('/home/books-list');
       (err) => console.log(err);
     }
     );

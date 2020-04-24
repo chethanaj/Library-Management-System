@@ -47,6 +47,7 @@ export class EditDialogComponent {
   stopEdit(): void {
     //this.data.authors=this.authorsArray
     this.dataService.updateBook(this.data);
+  
   }
 
   remove(authors: Authors): void {

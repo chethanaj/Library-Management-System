@@ -21,7 +21,7 @@ import { AuthService } from '../services/auth.service';
 export class FineTableComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['isbn', 'bookId','issueDate','expectedReturnDate','lateDates','fine'];
+  displayedColumns: string[] = ['userId','isbn', 'bookId','issueDate','expectedReturnDate','lateDates','fine'];
 
   exampleDatabase: DueBookService | null;
   dataSource: ExampleDataSource | null;

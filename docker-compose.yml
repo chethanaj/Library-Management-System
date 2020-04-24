@@ -4,39 +4,25 @@ services:
     image: lk.chethana/eureka:1.0.0
     ports:
       - 8761:8761
-  #mysql-db:
-   # image: mysql:8.0.19
-    #environment:
-     # MYSQL_DATABASE: root
-     # MYSQL_ROOT_PASSWORD: root
-     # MYSQL_ROOT_HOST: '%'
-    #volumes:
-    #  - /var/lib/mysql:/var/lib/mysql
-    #network_mode: host
-    #ports:
-     # - 3306:3306
   book-service:
     image: lk.chethana/bookservice:1.0.0
     depends_on:
       - eureka-service
-      #- admin-server
+      - admin-server
       - zipkin-server
-     #- mysql-db
     network_mode: host
   lend-service:
     image: lk.chethana/lend-service:1.0.0
     depends_on:
       - eureka-service
-     # - admin-server
-     #- mysql-db
+      - admin-server
     network_mode: host
   customer-service:
     image: lk.chethana/customer-service:1.0.0
     depends_on:
       - eureka-service
-     # - admin-server
+      - admin-server
       - zipkin-server
-     #- mysql-db
     network_mode: host
   apigateway:
     image: lk.chethana/apigateway:1.0.0
@@ -47,32 +33,33 @@ services:
       - book-service
       - lend-service
       - customer-service
-   #   - admin-server
+      - admin-server
       - zipkin-server
-  #admin-server:
-  #  image: lk.chethana/admin-server:1.0.0
-  #  ports:
-  #    - 8088:8088
-  #  depends_on:
-  #    - eureka-service
+    network_mode: host
+  admin-server:
+    image: lk.chethana/admin-server:1.0.0
+    ports:
+      - 8088:8088
+    depends_on:
+      - eureka-service
+    network_mode: host
   zipkin-server:
     image: lk.chethana/zipkin-server:1.0.0
     ports:
       - 9411:9411
     depends_on:
       - eureka-service
-     #- mysql-db
     network_mode: host
-  library-ui:
-    image: lk.chethana/library-ui:1.0.0
-    ports:
-      - 4200:4200
-    depends_on:
-      - eureka-service
-      - book-service
-      - lend-service
-      - customer-service
-      - apigateway
-    network_mode: host
+   library-ui:
+     image: lk.chethana/library-ui:1.0.0
+     ports:
+       - 4200:4200
+     depends_on:
+       - eureka-service
+       - book-service
+       - lend-service
+       - customer-service
+       - apigateway
+     network_mode: host
 
 

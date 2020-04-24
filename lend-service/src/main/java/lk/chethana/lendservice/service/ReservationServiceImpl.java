@@ -28,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public List<BookReservation> getReservingByCustomerId(Integer id) {
-        return reservationRepository.findByCustomerId(id);
+        return reservationRepository.findByCustomerIdAndIsReserved(id, true);
     }
 
     @Override

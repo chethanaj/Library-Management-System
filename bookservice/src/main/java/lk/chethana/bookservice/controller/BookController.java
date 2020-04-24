@@ -37,7 +37,7 @@ public class BookController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Book updateBook(@PathVariable Integer id, @RequestBody Book bookDetails) {
         Optional<Book> book = bookService.findById(id);
-        Book updatedBook = null;
+        Book updatedBook = bookDetails;
         if (book.isPresent()) {
             Book newBook = book.get();
             if (bookDetails.getIsbn() != null)

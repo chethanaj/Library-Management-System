@@ -15,7 +15,7 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable Integer id) {
 
