@@ -5,6 +5,7 @@ lastName:string;
 email:string;
 contactNumber:number;
 address:Address[];
+userId:number
 }
 
 export interface Address{

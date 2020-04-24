@@ -45,7 +45,7 @@ export class EditDialogComponent {
   }
 
   stopEdit(): void {
-    this.data.authors=this.authorsArray
+    //this.data.authors=this.authorsArray
     this.dataService.updateBook(this.data);
   }
 
@@ -57,17 +57,17 @@ export class EditDialogComponent {
   }
 
   /* Add dynamic authors */
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    // Add language
-    if ((value || '').trim() && this.authorsArray.length < 5) {
+  // add(event: MatChipInputEvent): void {
+  //   const input = event.input;
+  //   const value = event.value;
+  //   // Add language
+  //   if ((value || '').trim() && this.authorsArray.length < 5) {
       
-      this.authorsArray.push({ authorName: value.trim() })
-    }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
+  //     this.authorsArray.push({ authorName: value.trim() })
+  //   }
+  //   // Reset the input value
+  //   if (input) {
+  //     input.value = '';
+  //   }
+  // }
 }

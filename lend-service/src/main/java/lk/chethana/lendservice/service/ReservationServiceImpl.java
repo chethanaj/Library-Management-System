@@ -5,10 +5,12 @@ import lk.chethana.lendservice.model.BookReservation;
 import lk.chethana.lendservice.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ReservationServiceImpl implements ReservationService{
 
     @Autowired
@@ -21,7 +23,7 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public List<BookReservation> fetchAllReservingBooks() {
-        return reservationRepository.findAll();
+        return reservationRepository.findByIsReserved(true);
     }
 
     @Override
@@ -31,6 +33,6 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public BookReservation findOne(Integer id) {
-        return reservationRepository.getOne(id);
+        return reservationRepository.findById(id).orElse(new BookReservation());
     }
 }

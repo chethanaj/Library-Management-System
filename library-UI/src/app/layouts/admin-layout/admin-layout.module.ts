@@ -1,3 +1,4 @@
+import { FineTableComponent } from './../../fine-table/fine-table.component';
 import { DueBooksComponent } from './../../due-books/due-books.component';
 import { ReserveBookComponent } from './../../reserve-book/reserve-book.component';
 
@@ -18,7 +19,9 @@ import { LendDialogComponent } from 'src/app/lend-book/dialogs/lend/lend.dialog.
 import { ReserveDialogComponent } from 'src/app/reserve-book/dialogs/reserve/reserve.dialog.component';
 import { ReturnBookComponent } from 'src/app/return-book/return-book.component';
 import { ReturnDialogComponent } from 'src/app/return-book/dialogs/return/return.dialog.component';
-import { DueDialogComponent } from 'src/app/due-books/dialogs/due/due.dialog.component';
+import { ViewReservedComponent } from 'src/app/view-reserved/view-reserved.component';
+import { RemoveReserveDialogComponent } from 'src/app/view-reserved/dialogs/removeReserve/removeReserve.dialog.component';
+
 
 
 
@@ -47,7 +50,10 @@ import { DueDialogComponent } from 'src/app/due-books/dialogs/due/due.dialog.com
     ReturnBookComponent,
     ReturnDialogComponent,
     DueBooksComponent,
-    DueDialogComponent
+    FineTableComponent,
+    ViewReservedComponent,
+    RemoveReserveDialogComponent
+  
    
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

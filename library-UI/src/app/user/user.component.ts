@@ -17,7 +17,7 @@ import {DataSource} from "@angular/cdk/table";
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'contactNumber', 'address'];
+  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'email', 'contactNumber', 'address'];
 
   exampleDatabase: UserService | null;
   dataSource: ExampleDataSource | null;
@@ -99,7 +99,7 @@ this._exampleDatabase.getAllUsers();
 return merge(...displayDataChanges).pipe(map( () => {
 // Filter data
 this.filteredData = this._exampleDatabase.data.slice().filter((user: User) => {
-const searchStr = (user.id + user.firstName + user.lastName + user.email).toLowerCase();
+const searchStr = (user.userId + user.firstName + user.lastName + user.email).toLowerCase();
 return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
 });
 
@@ -132,7 +132,7 @@ let propertyA: number | string = '';
 let propertyB: number | string = '';
 
 switch (this._sort.active) {
-case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+case 'userId': [propertyA, propertyB] = [a.userId, b.userId]; break;
 case 'firstName': [propertyA, propertyB] = [a.firstName, b.firstName]; break;
 case 'lastName': [propertyA, propertyB] = [a.lastName, b.lastName]; break;
 case 'email': [propertyA, propertyB] = [a.email, b.email]; break;

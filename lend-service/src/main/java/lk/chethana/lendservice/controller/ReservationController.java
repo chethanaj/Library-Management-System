@@ -4,6 +4,7 @@ package lk.chethana.lendservice.controller;
 import lk.chethana.lendservice.model.BookReservation;
 import lk.chethana.lendservice.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -17,6 +18,7 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(method = RequestMethod.POST)
     public BookReservation reserve(@RequestBody BookReservation bookReservation) {
 
@@ -28,6 +30,7 @@ public class ReservationController {
         return reservation;
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)
     public BookReservation cancel(@PathVariable Integer id) {
 
@@ -36,12 +39,13 @@ public class ReservationController {
         return reservationService.save(reservation);
     }
 
-
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(method = RequestMethod.GET)
     public List<BookReservation> findAll() {
         return reservationService.fetchAllReservingBooks();
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<BookReservation> getReservingByCustomerId(@PathVariable Integer id) {
         return reservationService.getReservingByCustomerId(id);

@@ -12,7 +12,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {DataSource} from "@angular/cdk/table";
 import { SelectionModel } from '@angular/cdk/collections';
 import { DueBook } from '../models/dueBook';
-import { DueDialogComponent } from './dialogs/due/due.dialog.component';
+import { AuthService } from '../services/auth.service';
+
 
 
 @Component({
@@ -34,7 +35,7 @@ export class DueBooksComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
-              public dataService: DueBookService,) {
+              public dataService: DueBookService,public _authService: AuthService) {
   }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -55,26 +56,11 @@ export class DueBooksComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  returnBook(id:number){
-
-  this.id=id;
-  const dialogRef = this.dialog.open(DueDialogComponent, {
-    data: {id: id}
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result === 1) {
-      const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.userId === this.id);
-      // for delete we use splice in order to remove single object from DataService
-      this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-      this.refreshTable();
-    }
-  });
-  }
+  
 
 
   public loadData() {
-    this.exampleDatabase = new DueBookService(this.httpClient);
+    this.exampleDatabase = new DueBookService(this.httpClient,this._authService);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
     // .debounceTime(150)
@@ -127,9 +113,10 @@ export class ExampleDataSource extends DataSource<DueBook> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((duebooks: DueBook) => {
-          const searchStr = (duebooks.bookId)
-          //return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-          return searchStr;
+          duebooks.userId.toString();
+         const searchStr = ( duebooks.userId.toString()+duebooks.bookId.toString()+duebooks.isbn);
+         return searchStr.indexOf(this.filter) != -1;
+          //return searchStr;
         });
 
         // Sort filtered data

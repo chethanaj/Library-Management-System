@@ -36,18 +36,18 @@ CREATE TABLE `Author` (
 
 DROP TABLE IF EXISTS `Book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Book` (
-                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `id` int NOT NULL AUTO_INCREMENT,
                         `isbn` varchar(255) DEFAULT NULL,
                         `language` varchar(255) DEFAULT NULL,
-                        `noOfPages` int(11) DEFAULT NULL,
+                        `noOfPages` int DEFAULT NULL,
                         `publisher` varchar(255) DEFAULT NULL,
-                        `status` int(11) DEFAULT NULL,
+                        `status` int DEFAULT NULL,
                         `subject` varchar(255) DEFAULT NULL,
                         `title` varchar(255) DEFAULT NULL,
                         PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,14 +56,13 @@ CREATE TABLE `Book` (
 
 DROP TABLE IF EXISTS `Book_Author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Book_Author` (
-                               `bookid` int(11) NOT NULL,
-                               `authorid` int(11) NOT NULL,
+                               `bookid` int NOT NULL,
+                               `authorid` int NOT NULL,
                                KEY `FKpj2a81fneo0s8pudoutunx1df` (`authorid`),
                                KEY `FKiv7xoltb6pr38g3kmuf5n5fnr` (`bookid`),
                                CONSTRAINT `FKiv7xoltb6pr38g3kmuf5n5fnr` FOREIGN KEY (`bookid`) REFERENCES `Book` (`id`),
                                CONSTRAINT `FKpj2a81fneo0s8pudoutunx1df` FOREIGN KEY (`authorid`) REFERENCES `Author` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-

@@ -5,7 +5,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+        <input disabled #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
        
       </mat-form-field>
     </div>
@@ -54,7 +54,7 @@
     </div>
 
   
-    <div class="form-group">
+    <!-- <div class="form-group">
       <mat-form-field class="multiple-items">
         <mat-chip-list #chipList>
           <mat-chip *ngFor="let author of authorsArray" [selectable]="selectable" [removable]="removable"
@@ -70,7 +70,7 @@
           info
         </i>
       </mat-form-field>
-      </div>
+      </div> -->
 
     <div mat-dialog-actions>
       <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>

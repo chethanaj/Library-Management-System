@@ -134,7 +134,7 @@ export class ExampleDataSource extends DataSource<History> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((history: History) => {
-          const searchStr = (history.isbn).toLowerCase();
+          const searchStr = (history.id+history.isbn+history.bookId).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

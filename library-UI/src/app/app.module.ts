@@ -23,14 +23,14 @@ import { DueBookService } from './services/dueBook.service';
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AdminLayoutComponent,  
+    AdminLayoutComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface CustomerService {
 
-    Optional<Customer> getCustomerById(Integer id);
-    Optional<Customer> getCustomerByEmail(String email);
+    Customer getCustomerById(Integer id);
+    Customer getCustomerByEmail(String email);
     List <Customer> getAllCustomers();
     Customer saveCustomer(Customer customer);
 }

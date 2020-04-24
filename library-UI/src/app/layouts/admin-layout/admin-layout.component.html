@@ -8,11 +8,12 @@
     <h1>Public Library</h1>
     <span class="menu-spacer"></span>
     <span style="flex: 1 1 auto;"></span>
-
+    <h6>{{userEmail}}</h6>
     <div>
-      <a mat-button class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>        
+      <a mat-button class="nav-link" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>        
 
     </div>
+   
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -23,26 +24,33 @@
       <a *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/add-book">
         <mat-icon>add</mat-icon> Add Book
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="home/books-list">
+      <a  mat-list-item routerLinkActive="active" routerLink="home/books-list">
         <mat-icon>format_list_bulleted</mat-icon> View Books
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="home/user">
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/user">
         <mat-icon>account_circle_icon</mat-icon> View Users
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="home/user-history">
         <mat-icon>history</mat-icon> User History
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="home/lend-book">
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/lend-book">
         <mat-icon>library_books</mat-icon> Issue Book
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="home/reserve-book">
         <mat-icon>queue</mat-icon> Reserve Book
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="home/return-book">
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/return-book">
         <mat-icon>assignment_return</mat-icon> Return Book
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="home/due-book">
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/due-book">
         <mat-icon>assignment_late</mat-icon> Due Books
+      </a>
+      <a  *ngIf="isAdmin" mat-list-item routerLinkActive="active" routerLink="home/view-reserved">
+        <mat-icon>assignment</mat-icon> View Reserved
+      </a>
+      
+      <a mat-list-item routerLinkActive="active" routerLink="home/fine">
+        <mat-icon>monetization_on</mat-icon> Fine
       </a>
     </mat-nav-list>
   </mat-sidenav>

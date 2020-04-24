@@ -10,7 +10,7 @@
     </parent>
     <groupId>lk.chethana.security</groupId>
     <artifactId>auth-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>auth-parent</name>
     <description>Auth library parent project for Spring Boot</description>
 

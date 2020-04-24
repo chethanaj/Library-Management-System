@@ -19,18 +19,23 @@ services:
     image: lk.chethana/bookservice:1.0.0
     depends_on:
       - eureka-service
+      #- admin-server
+      - zipkin-server
      #- mysql-db
     network_mode: host
   lend-service:
     image: lk.chethana/lend-service:1.0.0
     depends_on:
       - eureka-service
+     # - admin-server
      #- mysql-db
     network_mode: host
   customer-service:
     image: lk.chethana/customer-service:1.0.0
     depends_on:
       - eureka-service
+     # - admin-server
+      - zipkin-server
      #- mysql-db
     network_mode: host
   apigateway:
@@ -42,6 +47,20 @@ services:
       - book-service
       - lend-service
       - customer-service
+   #   - admin-server
+      - zipkin-server
+  #admin-server:
+  #  image: lk.chethana/admin-server:1.0.0
+  #  ports:
+  #    - 8088:8088
+  #  depends_on:
+  #    - eureka-service
+  zipkin-server:
+    image: lk.chethana/zipkin-server:1.0.0
+    ports:
+      - 9411:9411
+    depends_on:
+      - eureka-service
      #- mysql-db
     network_mode: host
   library-ui:

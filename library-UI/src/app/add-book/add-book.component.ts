@@ -21,7 +21,7 @@ export class AddBookComponent implements OnInit  {
   authorsArray: Authors[] = [];
   private httpOptions = {
     headers: new HttpHeaders({
-      'Authorization':  localStorage.getItem('token'),
+      'Authorization':  'Bearer '+localStorage.getItem('token'),
       'Content-Type': 'application/json',
     })
   };
@@ -90,11 +90,12 @@ onSubmit() {
    body.authors = this.authorsArray;
   this.http.post<any>(this.SERVER_URL,body, this.httpOptions).subscribe(
     (res) => {
-      alert("Success !!!")
+      alert("Success !!!");
       //console.log(res),
     //this.router.navigate(['home/books-list']);
-    this.profileForm.reset();
-    this.authorsArray=[];
+    // this.profileForm.reset();
+    // this.authorsArray=[];
+   // window.location.href="http://localhost:4200/home/home/books-list";
     (err) => console.log(err)
     }
   );

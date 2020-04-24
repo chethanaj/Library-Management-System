@@ -20,7 +20,7 @@ public class BookService {
     public Book updateBook(Book book, String token){
 
         HttpHeaders headers=new HttpHeaders();
-        headers.add("Authorization",token);
+        headers.add("Authorization","Bearer " + token);
         HttpEntity<Book> request = new HttpEntity<>(book,headers);
 
         ResponseEntity<Book> response = restTemplate

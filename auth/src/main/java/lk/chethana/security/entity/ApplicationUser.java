@@ -11,7 +11,7 @@ public class ApplicationUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     @NaturalId
     private String username;
     private String password;
@@ -19,7 +19,7 @@ public class ApplicationUser {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Role> roles = new ArrayList<>();
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class ApplicationUser {
         this.password = password;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

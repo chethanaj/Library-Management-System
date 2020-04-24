@@ -16,11 +16,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Optional <Customer> getCustomerById(Integer id) {
-        return customerRepository.findById(id);
+    public Customer getCustomerById(Integer id) {
+        return customerRepository.findByUserId(id);
     }
 
-    public Optional <Customer> getCustomerByEmail(String email) {
+    public Customer getCustomerByEmail(String email) {
 
         return customerRepository.findByEmail(email);
     }

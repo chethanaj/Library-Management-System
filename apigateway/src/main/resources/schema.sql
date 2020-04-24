@@ -21,15 +21,16 @@ USE `Auth_DB`;
 
 DROP TABLE IF EXISTS `USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `USER` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_31rmpfll2abii4qbefw4b6o2p` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        `password` varchar(255) DEFAULT NULL,
+                        `username` varchar(255) DEFAULT NULL,
+                        PRIMARY KEY (`id`),
+                        UNIQUE KEY `UK_31rmpfll2abii4qbefw4b6o2p` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `USER_ROLES`
@@ -37,13 +38,13 @@ CREATE TABLE `USER` (
 
 DROP TABLE IF EXISTS `USER_ROLES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `USER_ROLES` (
-                              `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                              `id` int NOT NULL AUTO_INCREMENT,
                               `name` varchar(255) DEFAULT NULL,
-                              `user_id` bigint(20) DEFAULT NULL,
+                              `user_id` int DEFAULT NULL,
                               PRIMARY KEY (`id`),
                               KEY `FK1psxpus8efbcpvceqx4hbfn4p` (`user_id`),
                               CONSTRAINT `FK1psxpus8efbcpvceqx4hbfn4p` FOREIGN KEY (`user_id`) REFERENCES `USER` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

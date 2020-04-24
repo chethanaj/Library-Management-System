@@ -11,6 +11,7 @@ import {Component, Inject} from '@angular/core';
 })
 export class LendDialogComponent {
 
+  useId: any = localStorage.getItem('userId');
   constructor(public dialogRef: MatDialogRef<LendDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: BookService) { }
 
@@ -19,6 +20,7 @@ export class LendDialogComponent {
   }
 
   confirmLend(): void {
+    this.data.customerId = this.useId;
     this.dataService.issueBook(this.data);
   }
 }

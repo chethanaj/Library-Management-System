@@ -35,18 +35,19 @@ export class RegisterComponent implements OnInit {
 
  isChecked: boolean;
  isCheckedName: any;
- checkboxData = ["Admin","User"];
+ //checkboxData = ["Admin","User"];
+ checkboxData = ["User"];
  onChange(e){ 
    this.rolesArray = [];      
     this.isChecked = !this.isChecked;
     this.isCheckedName = e.target.name;
     let body = this.registerUserForm.value;
     if(this.isCheckedName=="User"){
-     this.rolesArray.push({role:"LIBUSER"});
+     this.rolesArray.push({name:"LIBUSER"});
      
     }else{
     
-    this.rolesArray.push({role:"LIBADMIN"});
+    this.rolesArray.push({name:"LIBADMIN"});
   }
   }
              
@@ -73,6 +74,6 @@ export class RegisterComponent implements OnInit {
 }
 export interface Role {
   //id:number;
-  role: string;
+  name: string;
 
 }

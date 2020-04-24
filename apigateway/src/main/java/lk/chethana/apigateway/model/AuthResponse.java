@@ -5,8 +5,17 @@ import java.util.List;
 public class AuthResponse {
     private String accessToken ;
     private String userName;
-    private long userId;
+    private Integer userId;
     private List<String> userRoles;
+    String userLogo;
+
+    public String getUserLogo() {
+        return userLogo;
+    }
+
+    public void setUserLogo(String userLogo) {
+        this.userLogo = userLogo;
+    }
 
     public AuthResponse(String accessToken) {
         this.accessToken = accessToken;
@@ -31,11 +40,11 @@ public class AuthResponse {
         this.userName = userName;
     }
 
-    public long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

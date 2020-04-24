@@ -12,6 +12,7 @@ import {map} from 'rxjs/operators';
 import {MatDialog} from "@angular/material/dialog";
 import {Bookapi} from "../models/bookapi";
 import {DataSource} from "@angular/cdk/table";
+import { AuthService } from '../services/auth.service';
 
 
 
@@ -30,15 +31,20 @@ export class BookComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
-              public dataService: BookService) {
+              public dataService: BookService,
+              public _authService: AuthService) {
   }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('filter', {static: true}) filter: ElementRef;
   
-
+  isAdmin = false;
   ngOnInit() {
+    this.isAdmin = this._authService.isAdminLogin();
+    if(!this.isAdmin){
+      this.displayedColumns = ['id', 'isbn', 'title', 'subject', 'publisher', 'language', 'noOfPages', 'status', 'authors'];
+    }
     this.loadData();
   }
 
@@ -46,11 +52,11 @@ export class BookComponent implements OnInit {
     this.loadData();
   }
 
-  startEdit(id: number, isbn: string, title: string, subject: string, publisher: string, language: string,noOfPages:number,status:string,authors:string[]) {
+  startEdit(id: number, isbn: string, title: string, subject: string, publisher: string, language: string,noOfPages:number,status:string) {
     this.id = id;
   
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: {id: id, isbn: isbn, title: title, subject: subject, publisher: publisher, language: language, noOfPages:noOfPages, status:status,authors:authors}
+      data: {id: id, isbn: isbn, title: title, subject: subject, publisher: publisher, language: language, noOfPages:noOfPages, status:status}
     });
 
 
@@ -143,7 +149,7 @@ export class ExampleDataSource extends DataSource<Bookapi> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((book: Bookapi) => {
-          const searchStr = (book.title,book.isbn,book.subject,book.status,book.language).toLowerCase();
+          const searchStr = (book.id+book.title+book.isbn+book.subject+book.status+book.language).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

@@ -87,8 +87,9 @@ public class LendingServiceImpl implements LendingService {
         DateTime from = new DateTime(expectedReturnedDate);
         DateTime to = new DateTime(date);
         Days dueDates = Days.daysBetween(from, to);
-        dueBook.setLateDates(dueDates.getDays());
-        dueBook.setFine(dueDates.getDays() * 5);
+        int due = dueDates.getDays() > 0 ? dueDates.getDays() : 0 ;
+        dueBook.setLateDates(due);
+        dueBook.setFine(due * 5);
         return dueBook;
     }
 }

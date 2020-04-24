@@ -8,6 +8,7 @@ import lk.chethana.lendservice.model.DueBook;
 import lk.chethana.lendservice.service.BookService;
 import lk.chethana.lendservice.service.LendingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,27 +41,32 @@ public class LendingController {
         return new Date(c.getTimeInMillis());
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(method = RequestMethod.GET)
     public List<BookLending> findAll() {
 
         return lendingService.fetchAllLendingBooks();
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<BookLending> getLendingByCustomerId(@PathVariable Integer id) {
         return lendingService.getLendingByCustomerId(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBUSER')")
     @RequestMapping(value = "/dueBook/{id}", method = RequestMethod.GET)
     public List<DueBook> getDueBookByCustomerId(@PathVariable Integer id) {
         return lendingService.getDueBookListByCustomerId(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
     @RequestMapping(value = "/allDueBooks", method = RequestMethod.GET)
     public List<DueBook> getAllDueBook() {
         return lendingService.getDueBookList();
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
     @RequestMapping(method = RequestMethod.POST)
     public BookLending issueBook(@RequestBody BookLending bookDetails, @RequestHeader("Authorization") String authorization) {
 
@@ -85,6 +91,7 @@ public class LendingController {
         return bookLending;
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
     @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
     public BookLending returnBook(@PathVariable Integer id, @RequestHeader("Authorization") String authorization) {
 

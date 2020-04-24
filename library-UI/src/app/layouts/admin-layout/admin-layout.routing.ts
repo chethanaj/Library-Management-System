@@ -1,3 +1,4 @@
+import { FineTableComponent } from './../../fine-table/fine-table.component';
 import { DueBooksComponent } from './../../due-books/due-books.component';
 import { ReturnBookComponent } from './../../return-book/return-book.component';
 import { LendBookComponent } from './../../lend-book/lend-book.component';
@@ -9,6 +10,7 @@ import { Routes } from '@angular/router';
 
 import {BookComponent} from "../../book/book.component";
 import { ReserveBookComponent } from 'src/app/reserve-book/reserve-book.component';
+import { ViewReservedComponent } from 'src/app/view-reserved/view-reserved.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -21,6 +23,9 @@ export const AdminLayoutRoutes: Routes = [
     { path : 'home/reserve-book',   component: ReserveBookComponent},
     { path : 'home/return-book',   component: ReturnBookComponent},
     { path : 'home/due-book',   component: DueBooksComponent},
+    { path : 'home/fine',   component: FineTableComponent},
+    { path : 'home/view-reserved',   component: ViewReservedComponent},
+
 
     
 

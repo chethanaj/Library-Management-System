@@ -24,6 +24,10 @@ export class AuthService {
 
   logoutUser() {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('roles');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userLogo');
     this._router.navigate(['/']);
   }
 
@@ -34,12 +38,14 @@ export class AuthService {
 
   isAdminLogin(){
     
-    if(this.loggedIn){
+    // if(this.loggedIn){
       let roles = localStorage.getItem('roles');
-      return roles.indexOf('LIBADMIN') != 1;
-    }
+      console.log(roles);
+      console.log(roles.indexOf('LIBADMIN'));
+      return roles.indexOf('LIBADMIN') != -1;
+    // }
 
-    return true;
+    // return true;
   }
 
 

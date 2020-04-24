@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener} from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,20 +9,17 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
- 
+
   opened = true;
   isAdmin = false;
+  userEmail = localStorage.getItem('userLogo');
   @ViewChild('sidenav') sidenav: MatSidenav;
-  constructor(public _authService: AuthService) {}
+  constructor(public _authService: AuthService) { }
 
   ngOnInit() {
     this.isAdmin = this._authService.isAdminLogin();
-    // if (window.innerWidth < 768) {
-    //   this.sidenav.fixedTopGap = 100;
-    //   this.opened = false;
-    // } else {
-    //   this.sidenav.fixedTopGap = 100;
-    //   this.opened = true;
+    // if (window.location.href == 'http://localhost:4200/home') {
+    //   window.location.href = "http://localhost:4200/home/home/books-list";
     // }
   }
 

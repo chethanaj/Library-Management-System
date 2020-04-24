@@ -126,7 +126,7 @@ export class ExampleDataSource extends DataSource<Bookapi> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((book: Bookapi) => {
-          const searchStr = (book.id + book.title + book.isbn + book.subject,book.language).toLowerCase();
+          const searchStr = (book.id + book.title + book.isbn + book.subject+book.language).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

@@ -106,7 +106,7 @@ export class UserHistoryComponent implements OnInit {
       return merge(...displayDataChanges).pipe(map( () => {
           // Filter data
           this.filteredData = this._exampleDatabase.data.slice().filter((item: History) => {
-            const searchStr = (item.id + item.bookId + item.isbn).toLowerCase();
+            const searchStr = (item.id.toString() + item.bookId.toString() + item.isbn).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
   

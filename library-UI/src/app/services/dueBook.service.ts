@@ -3,6 +3,7 @@ import { DueBook } from './../models/dueBook';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class DueBookService {
@@ -24,7 +25,7 @@ export class DueBookService {
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpClient) {}
+  constructor (private httpClient: HttpClient,public _authService: AuthService) {}
 
   get data(): DueBook[] {
     return this.dataChange.value;
@@ -36,26 +37,15 @@ export class DueBookService {
 
   /** CRUD METHODS */
 
-//   getHistory(id:number): void {
-//     //console.log(this.userID);
-//     this.httpClient.get<History[]>(this.LEND_BOOK+id,this.httpOptions).subscribe(data=>{
-//       this.dataChange.next(data);
-//       // this.userID=data.id;
-     
-//       // this.httpClient.get<History[]>(this.LEND_BOOK+this.userID,this.httpOptions).subscribe(data => {
-        
-//       },
-//       (error: HttpErrorResponse) => {
-//         console.log (error.name + ' ' + error.message);
-//       });
-//    // });
-//     //console.log(this.userID);
-    
-//   }
-
 //allDueBooks
 getDueBooks():void{
-    this.httpClient.get<DueBook[]>(this.LEND_BOOK+'allDueBooks',this.httpOptions).subscribe(data => {
+
+  let url = this.LEND_BOOK+'/dueBook/'+localStorage.getItem('userId');
+  if(this._authService.isAdminLogin()){
+    url = this.LEND_BOOK+'allDueBooks';
+  }
+
+    this.httpClient.get<DueBook[]>(url,this.httpOptions).subscribe(data => {
       this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -63,7 +53,17 @@ getDueBooks():void{
     });
    }
 
-  
+  ///dueBook/{id}
+
+  getFineForUser():void{
+   
+    this.httpClient.get<DueBook[]>(this.LEND_BOOK+'dueBook/'+ localStorage.getItem('userId'),this.httpOptions).subscribe(data => {
+      this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+    });
+   }
   
 }
 

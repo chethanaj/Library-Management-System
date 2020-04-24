@@ -33,7 +33,7 @@ public class BookController {
         return bookService.findById(id);
     }
 
-    //@PreAuthorize("hasRole('ROLE_LIBADMIN')")
+    @PreAuthorize("hasRole('ROLE_LIBADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Book updateBook(@PathVariable Integer id, @RequestBody Book bookDetails) {
         Optional<Book> book = bookService.findById(id);
@@ -54,7 +54,7 @@ public class BookController {
                 newBook.setLanguage(bookDetails.getLanguage());
             if(bookDetails.getNoOfPages()!=null)
                 newBook.setNoOfPages(bookDetails.getNoOfPages());
-            if(bookDetails.getAuthors()!=null)
+            if(bookDetails.getAuthors()!=null && !bookDetails.getAuthors().isEmpty())
                 newBook.setAuthors(bookDetails.getAuthors());
             updatedBook = bookService.addBook(newBook);
         } else {
